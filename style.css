@@ -1,0 +1,70 @@
+* {
+	margin: 0px;
+	padding: 0px;
+}
+
+header {
+	width: 384px;
+	height: 190px;
+	text-align: center;
+	background: url(divide.png) no-repeat center 145px;
+}
+
+body {
+	max-width: 384px;
+	width: 384px;
+	font-family: 'Crimson';
+}
+
+h1 {
+	font-size: 58px;
+	margin-top: 20px;
+}
+
+h1 em {
+	font-weight: bold;
+}
+
+h3 {
+	font-size: 18px;
+	margin-top: -5px;
+	font-weight: bold;
+}
+
+h2 {
+	font-size: 30px;
+	margin-top: 15px;
+}
+
+#content {
+	width: 344px;
+	margin: 10px auto;
+}
+
+.item {
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border-bottom: 1px dotted black;
+}
+
+.item h4 {
+	text-align: center;
+	margin-bottom: 10px;
+	font-size: 28px;
+}
+
+.item p {
+	text-align: justify;
+	font-size: 20px;
+}
+
+.item:last-child {
+	border-bottom: none;
+}
+
+footer {
+	text-align: center;
+	font-size: 18px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
