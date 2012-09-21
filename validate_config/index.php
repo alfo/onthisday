@@ -26,7 +26,7 @@
 
 	function fail($type, $post) {
 		if ($type == 1)
-			$return = array('valid' => 'false', 'errors' => array('No "source" value passed.');
+			$return = array('valid' => 'false', 'errors' => array('No "source" value passed.'));
 		elseif ($type == 2)
 			$return = array('valid' => 'false', 'errors' => array('"source" value invalid. Supplied was '.$post.', should be bbc or wikipedia.'));
 		header('HTTP/1.0 400 Bad Request', true, 400);
