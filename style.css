@@ -37,8 +37,8 @@ h2 {
 }
 
 #content {
-	width: 344px;
-	margin: 10px auto;
+	width: 384px;
+	margin: 10px 0px;
 }
 
 .item {
@@ -50,12 +50,12 @@ h2 {
 .item h4 {
 	text-align: center;
 	margin-bottom: 10px;
-	font-size: 28px;
+	font-size: 40px;
 }
 
 .item p {
 	text-align: justify;
-	font-size: 20px;
+	font-size: 30px;
 }
 
 .item:last-child {
