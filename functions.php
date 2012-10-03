@@ -116,7 +116,10 @@
 			$doc = new DOMdocument();
 
 			// Load the contents of the feed
-			$doc->load('http://news.bbc.co.uk/rss/on_this_day/front_page/rss.xml');
+			$contents = grab('http://news.bbc.co.uk/rss/on_this_day/front_page/rss.xml');
+
+			// Load the contents into the object
+			$doc->loadXML($contents);
 	
 			// Initialize some arrays
 			$rss_array = array();
@@ -164,4 +167,15 @@
 		}
 	}
 
+	function grab($url) {
+	    $ch = curl_init();
+	    curl_setopt($ch, CURLOPT_HEADER, 0);
+	    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+	    curl_setopt($ch, CURLOPT_TIMEOUT, 5);
+	    curl_setopt($ch, CURLOPT_URL, $url);
+	    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+	    $data = curl_exec($ch);
+	    curl_close($ch);
+	    return $data;
+	}
 ?>
