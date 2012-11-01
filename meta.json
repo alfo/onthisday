@@ -5,7 +5,7 @@
   "description":                    "A random event that happened on this day in history",
   "delivered_on":                   "every day",
   "external_configuration":         false,
-  "send_timezone_info":             false,
+  "send_timezone_info":             true,
   "send_delivery_count":            false,
   "config": {
   "fields": 
