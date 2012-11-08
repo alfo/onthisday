@@ -5,9 +5,9 @@
 
 header {
 	width: 384px;
-	height: 190px;
+	height: 160px;
 	text-align: center;
-	background: url(divide.png) no-repeat center 145px;
+	background: url(http://little.alexforey.com/onthisday/divide.png) no-repeat center 120px;
 }
 
 body {
@@ -27,24 +27,24 @@ h1 em {
 
 h3 {
 	font-size: 18px;
-	margin-top: -5px;
+	margin-top: -8px;
 	font-weight: bold;
 }
 
 h2 {
 	font-size: 30px;
-	margin-top: 15px;
+	margin-top: 8px;
 }
 
 #content {
 	width: 384px;
-	margin: 10px 0px;
+	margin: 0px 0px;
 }
 
 .item {
 	padding-top: 10px;
-	padding-bottom: 10px;
-	border-bottom: 1px dotted black;
+	padding-bottom: 15px;
+	background: url(http://little.alexforey.com/onthisday/dotted_line.png) no-repeat bottom center;
 }
 
 .item h4 {
@@ -54,12 +54,13 @@ h2 {
 }
 
 .item p {
-	text-align: justify;
+	text-align: left;
 	font-size: 30px;
+	line-height: 1.1;
 }
 
 .item:last-child {
-	border-bottom: none;
+    background: url(http://little.alexforey.com/onthisday/thick_line.png) no-repeat bottom center;
 }
 
 footer {
