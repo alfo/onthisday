@@ -2,7 +2,7 @@
   "publication_api_version":        "1.0",
   "owner_email":					"me@alexforey.com",
   "name":                           "On This Day",
-  "description":                    "A random event that happened on this day in history",
+  "description":                    "Some significant events that happened on this day in history",
   "delivered_on":                   "every day",
   "external_configuration":         false,
   "send_timezone_info":             true,
@@ -16,8 +16,8 @@
         "label": "Source",
         "options": 
           [
-            ["The BBC","bbc"],
-            ["Wikipedia", "wikipedia"]
+            ["Wikipedia", "wikipedia"],
+            ["The BBC","bbc"]
           ] 
        }
     ]
