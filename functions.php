@@ -150,6 +150,8 @@
 
 		}
 
+		$return = array_slice($return, -3, 3);
+
 		// Return!
 		return $return;
 
