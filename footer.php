@@ -1,6 +1,6 @@
 		</section>
 		<footer>
-			<h4>by Alex Forey</h4>
+			<h4>From <?php echo $footerSource; ?> | by Alex Forey</h4>
 		</footer>
 	</body>
 </html>

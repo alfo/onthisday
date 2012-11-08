@@ -36,9 +36,9 @@ The only configuration defined in `validate_config` is `source`, which should ei
 Feeds
 -----
 
-On This Day pulls from either the BBC RSS:
+On This Day pulls from either the front page of the BBC site:
 
-	http://news.bbc.co.uk/rss/on_this_day/front_page/rss.xml
+	http://news.bbc.co.uk/onthisday/default.stm
 
 Or the Wikipedia feed:
 

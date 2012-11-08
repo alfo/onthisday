@@ -13,6 +13,6 @@
 
 	html($items); // Generate the HTML for the items
 
-	makeFooter(); // Generate the footer HTML
+	makeFooter($_GET['source']); // Generate the footer HTML
 
 ?>

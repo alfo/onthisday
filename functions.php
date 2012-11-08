@@ -9,7 +9,9 @@
 	}
 
 	// Make the footer by including it
-	function makeFooter() {
+	function makeFooter($source) {
+		if ($source == 'bbc') $footerSource = 'The BBC';
+		elseif ($source == 'wikipedia') $footerSource = 'Wikipedia';
 		include '../footer.php';
 	}
 
@@ -37,14 +39,8 @@
 
 		if ($source == 'wikipedia') {
 
-			$ch = curl_init();
-			curl_setopt($ch, CURLOPT_URL, 'http://en.wikipedia.org/w/api.php?action=featuredfeed&feed=onthisday&feedformat=rss');
-			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-			curl_setopt($ch, CURLOPT_TIMEOUT, '3');
-			curl_setopt($ch, CURLOPT_USERAGENT, 'On This Day for Little Printer by Alex Forey');
-			$contents = trim(curl_exec($ch)); // Get the contents from Wikipedia
-			curl_close($ch);
-
+			$contents = trim(grab('http://en.wikipedia.org/w/api.php?action=featuredfeed&feed=onthisday&feedformat=rss'));
+			
 			$array = xmlToArray($contents);
 			
 			// Count the number of days
@@ -109,38 +105,47 @@
 
 		} else { // Using the BBC as source instead
 
-			// Which bits of info do we need?
-			$rss_tags = array('title', 'link', 'guid', 'description', 'pubDate');
+			$doc = phpQuery::newDocumentHTML(grab('http://news.bbc.co.uk/onthisday/default.stm'));
 
-			// Initialize a DOM Document for Parsing
-			$doc = new DOMdocument();
+			$items = $doc->find('div.bodytext')->text();
 
-			// Load the contents of the feed
-			$contents = grab('http://news.bbc.co.uk/rss/on_this_day/front_page/rss.xml');
+			// Trim the whitespace around the items
+			$items = trim(removeEmptyLines($items));
 
-			// Load the contents into the object
-			$doc->loadXML($contents);
-	
-			// Initialize some arrays
-			$rss_array = array();
-			$items = array();
-	
-			// Cycle through each item, extract the info and add it to a big array
-			foreach($doc-> getElementsByTagName('item') as $node) {
-				foreach($rss_tags as $key => $value) {
-					$items[$value] = $node->getElementsByTagName($value)->item(0)->nodeValue;
-				}
-				array_push($rss_array, $items);
+			// Split $items into an $output array based on new lines
+			foreach(preg_split("/(\r?\n)/", $items) as $line){
+				$output[] = substr($line, 1);
 			}
+
+			// Cycle through the array of raw data and extract only the articles
+			$i = 0;
+
+			while ($i <= 8) {
+				$articles[] = $output[$i];
+				$i++;
+			}
+
+			// This isn't nice, but it works
+			$extracted[0]['title'] = $articles[0];
+			$extracted[0]['description'] = $articles[1];
+			$extracted[1]['title'] = $articles[2];
+			$extracted[1]['description'] = $articles[3];
+			$extracted[2]['title'] = $articles[4];
+			$extracted[2]['description'] = $articles[5];
+			$extracted[2]['title'] = $articles[6];
+			$extracted[2]['description'] = $articles[7];
 
 			// Initialize the $return array
 			$return = array();
 
 			// Now to format the info
 
-			foreach ($rss_array as $item) {
+			foreach ($extracted as $item) {
 				$year_bits = explode(': ', $item['title']);
 				$year = $year_bits[0];
+				// A quick way to fix a missing 1 on the front of years.
+				// As the BBC do not report on non-currnet affairs, it is safe to say that this will not cause any mishaps
+				if ($year < 1000) $year = "1".$year;
 				$info = $item['description'];
 				$add = array();
 				$add['year'] = $year;
@@ -150,11 +155,17 @@
 
 		}
 
+		usort($return, "sortByYear");
+
 		$return = array_slice($return, -3, 3);
 
 		// Return!
 		return $return;
 
+	}
+
+	function sortByYear($a, $b) {
+		return $a['year'] - $b['year'];
 	}
 
 	// This function takes in an $items array, and outputs some HTML
@@ -176,6 +187,7 @@
 	    curl_setopt($ch, CURLOPT_TIMEOUT, 5);
 	    curl_setopt($ch, CURLOPT_URL, $url);
 	    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+	    curl_setopt($ch, CURLOPT_USERAGENT, 'On This Day for Little Printer by Alex Forey');
 	    $data = curl_exec($ch);
 	    curl_close($ch);
 	    return $data;
