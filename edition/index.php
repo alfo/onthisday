@@ -2,7 +2,7 @@
 
 	require('../functions.php');
 	
-	header("Etag: ". ETag()); // Output the ETag
+	ETag(); // Output the ETag
 
 	$items = onThisDay($_GET['source']); // Grab the items
 	

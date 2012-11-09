@@ -20,7 +20,7 @@
 		// Get today's date
 		$date = date('d-m-Y');
 		// md5 it
-		return md5($date);
+		header("ETag: ".md5($date));
 	}
 
 	// A simple function to remove the empty lines from the content returned by Wikipedia
