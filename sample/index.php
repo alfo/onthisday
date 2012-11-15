@@ -29,7 +29,7 @@
 			</div>
 		</section>
 		<footer>
-			<h4>by Alex Forey</h4>
+			<h4>From Wikipedia | by Alex Forey</h4>
 		</footer>
 	</body>
 </html>
