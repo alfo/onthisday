@@ -31,15 +31,19 @@ And these are the rest of them
 Configuration
 -------------
 
-The only configuration defined in `validate_config` is `source`, which should either be set as `bbc` or `wikipedia`, and defines whether to obtain the data from the BBC or Wikipedia.
+There is no configuration needed because support for the BBC as a source was dropped at launch because their RSS was unreliable. You will notice that the code for scraping the front page of the BBC is still there, but not available for consumer use because it is also unreliable.
 
 Feeds
 -----
 
-On This Day pulls from either the front page of the BBC site:
+On This Day pulls from the Wikipedia feed:
+
+	http://en.wikipedia.org/w/api.php?action=featuredfeed&feed=onthisday&feedformat=rss
+
+The BBC front page is
 
 	http://news.bbc.co.uk/onthisday/default.stm
 
-Or the Wikipedia feed:
+And the BBC RSS (stuck on the 25th October) is
 
-	http://en.wikipedia.org/w/api.php?action=featuredfeed&feed=onthisday&feedformat=rss
+	http://news.bbc.co.uk/rss/on_this_day/front_page/rss.xml

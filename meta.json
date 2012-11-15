@@ -6,20 +6,5 @@
   "delivered_on":                   "every day",
   "external_configuration":         false,
   "send_timezone_info":             true,
-  "send_delivery_count":            false,
-  "config": {
-  "fields": 
-    [
-      {
-        "type": "select",
-        "name": "source",
-        "label": "Source",
-        "options": 
-          [
-            ["Wikipedia", "wikipedia"],
-            ["The BBC","bbc"]
-          ] 
-       }
-    ]
-  }
+  "send_delivery_count":            false
 }
