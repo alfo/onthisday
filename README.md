@@ -5,6 +5,8 @@ This is a simple publication for the [Little Printer](http://bergcloud.com/littl
 
 It's still a bit rough around the edges, but it works. Feel free to improve it.
 
+It is under a Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License.
+
 Scripts
 -------
 
