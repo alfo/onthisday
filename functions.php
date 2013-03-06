@@ -23,6 +23,10 @@
 		header("ETag: ".md5($date));
 	}
 
+	function charset() {
+		header("Content-Type: text/html; charset=utf-8");
+	}
+
 	// A simple function to remove the empty lines from the content returned by Wikipedia
 	function removeEmptyLines($string) { return preg_replace("/(^[\r\n]*|[\r\n]+)[\s\t]*[\r\n]+/", "\n", $string); }
 

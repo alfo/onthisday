@@ -3,8 +3,8 @@
 <html>
 	<head>
 		<title>On This Day</title>
-		<link rel="stylesheet" type="text/css" href="http://little.alexforey.com/onthisday/reset.css">
-		<link rel="stylesheet" type="text/css" href="http://little.alexforey.com/onthisday/style.css">
+		<link rel="stylesheet" type="text/css" href="../reset.css">
+		<link rel="stylesheet" type="text/css" href="../style.css">
 	</head>
 
 	<body>
