@@ -1,5 +1,8 @@
 <?php
 
+	// Some installations of PHP will complain if this isn't done:
+	date_default_timezone_set('UTC');
+	
 	// Include phpQuery, the engine we use to extract the content from Wikipedia
 	include 'phpQuery.php';
 
@@ -69,7 +72,7 @@
 			
 			// Split $items into an $output array based on new lines
 			foreach(preg_split("/(\r?\n)/", $items) as $line){
-				$output[] = substr($line, 1);
+				$output[] = trim($line);
 			}
 
 			// -- This section could also be trimmed down -- //
