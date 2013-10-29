@@ -8,7 +8,7 @@
 
 		if (isset($post['source'])) {
 
-			if ($post['source'] == 'bbc' || $post['source'] == 'wikipedia') {
+			if ($post['source'] == 'wikipedia') {
 				yay();
 			} else {
 				fail(2, $post['source']);
