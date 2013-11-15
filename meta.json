@@ -6,5 +6,20 @@
   "delivered_on":                   "every day",
   "external_configuration":         false,
   "send_timezone_info":             true,
-  "send_delivery_count":            false
+  "send_delivery_count":            false,
+  "config": {
+	  "fields": 
+	    [
+	      {
+	        "type": "radio",
+	        "name": "time_preference",
+	        "label": "Would you like:",
+	        "options": 
+	          [
+	            ["More recent events","new"],
+	            ["Less recent events", "old"]
+	          ] 
+	       }
+	    ]
+	}
 }

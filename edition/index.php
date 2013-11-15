@@ -5,7 +5,7 @@
 	ETag(); // Output the ETag
 	charset(); // Output the charset header, as here: http://remote.bergcloud.com/developers/reference/edition#charsets
 
-	$items = onThisDay('wikipedia', ''); // Grab the items
+	$items = onThisDay('wikipedia', $_GET['time_preference']); // Grab the items
 	
 
 	// -- Output HTML -- //
