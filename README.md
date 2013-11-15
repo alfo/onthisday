@@ -33,7 +33,14 @@ And these are the rest of them
 Configuration
 -------------
 
-There is no configuration needed because support for the BBC as a source was dropped at launch because their RSS was unreliable. You will notice that the code for scraping the front page of the BBC is still there, but not available for consumer use because it is also unreliable.
+You can choose to receive newer events (typically 1800s to 2000s) or older events (1000s to 1600s or so). This decision is simply put into effect by selecting the last events in the RSS feed as opposed to the first ones.
+
+There is no option to choose a feed because support for the BBC as a source was dropped at launch because their RSS was unreliable. You will notice that the code for scraping the front page of the BBC is still there, but not available for consumer use because it is also unreliable.
+
+Announcements
+-------------
+
+I recently implemented an announcement system that allows me to tell users about important changes. The announcements are stored in a [JSON file](https://github.com/alfo/onthisday/blob/master/announcements.json), and a simple function checks whether the date attached to the announcement is today's date. If it is, it includes another 'view' file (`[announcement.php](https://github.com/alfo/onthisday/blob/master/announcement.php)`) which prints out the announcement to the users.
 
 Feeds
 -----
