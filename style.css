@@ -63,6 +63,21 @@ h2 {
     background: url(http://little.alexforey.com/onthisday/thick_line.png) no-repeat bottom center;
 }
 
+.announcement {
+	border: 4px dashed black;
+	padding: 10px;
+	margin-top: 15px;
+}
+
+.announcement h3 {
+	text-align: center;
+	margin: 6px 0;
+}
+
+.announcement p {
+	line-height: 1.2;
+}
+
 footer {
 	text-align: center;
 	font-size: 18px;

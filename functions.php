@@ -18,6 +18,30 @@
 		include '../footer.php';
 	}
 
+	function makeAnnouncement() {
+		$announcements = json_decode(file_get_contents('../announcements.json'), true);
+		$announcement = '';
+		foreach ($announcements as $a) {
+			if (isToday($a['date'])) {
+				$announcement = $a;
+			}
+		}
+
+		if ($announcement)
+			include '../announcement.php';
+	}
+
+	function isToday($timestamp) {
+
+		$today = date('Ymd');
+		$announcementDay = date('Ymd', strtotime($timestamp));
+
+		if ($today == $announcementDay)
+			return true;
+		else
+			return false;
+	}
+
 	// This function will generate an ETag, which will be unique for each day
 	function ETag() {
 		// Get today's date
@@ -42,7 +66,7 @@
 	}
 
 	// The main function. This obtains the information on this day
-	function onThisDay($source) {
+	function onThisDay($source, $newOrOld) {
 
 		if ($source == 'wikipedia') {
 
@@ -74,13 +98,6 @@
 			foreach(preg_split("/(\r?\n)/", $items) as $line){
 				$output[] = trim($line);
 			}
-
-			// -- This section could also be trimmed down -- //
-
-			// Remove the last three objects, which are always not actual information
-			unset($output[count($output)-1]);
-			unset($output[count($output)-1]);
-			unset($output[count($output)-1]);
 
 			// Now we have a nice array with maybe three or four items in it that look like this:
 			// "1843 – Something awesome happened"
@@ -162,9 +179,15 @@
 
 		}
 
+		if ($newOrOld == 'old') {
+			$usort = 0;
+		} else {
+			$usort = -3;
+		}
+
 		usort($return, "sortByYear");
 
-		$return = array_slice($return, -3, 3);
+		$return = array_slice($return, $usort, 3, true);
 
 		// Return!
 		return $return;
