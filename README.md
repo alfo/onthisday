@@ -40,7 +40,7 @@ There is no option to choose a feed because support for the BBC as a source was 
 Announcements
 -------------
 
-I recently implemented an announcement system that allows me to tell users about important changes. The announcements are stored in a [JSON file](https://github.com/alfo/onthisday/blob/master/announcements.json), and a simple function checks whether the date attached to the announcement is today's date. If it is, it includes another 'view' file (`[announcement.php](https://github.com/alfo/onthisday/blob/master/announcement.php)`) which prints out the announcement to the users.
+I recently implemented an announcement system that allows me to tell users about important changes. The announcements are stored in a [JSON file](https://github.com/alfo/onthisday/blob/master/announcements.json), and a simple function checks whether the date attached to the announcement is today's date. If it is, it includes another 'view' file ([`announcement.php`](https://github.com/alfo/onthisday/blob/master/announcement.php)) which prints out the announcement to the users.
 
 Feeds
 -----
