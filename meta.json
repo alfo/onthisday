@@ -16,8 +16,8 @@
 	        "label": "Would you like:",
 	        "options": 
 	          [
-	            ["More recent events","new"],
-	            ["Less recent events", "old"]
+	            ["More recent events (1800s - 2010s)","new"],
+	            ["Less recent events (1000s - 1700s)", "old"]
 	          ] 
 	       }
 	    ]
