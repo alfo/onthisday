@@ -19,6 +19,18 @@
 	            ["More recent events (1800s - 2010s)","new"],
 	            ["Less recent events (1000s - 1700s)", "old"]
 	          ] 
+	       },
+	       {
+	       	"type": "select",
+	       	"name": "number",
+	       	"label": "How many stories would you like to receive?",
+	       	"options":
+	       		[
+	       			["One Story", 1],
+	       			["Two Stories", 2],
+	       			["Three Stories", 3],
+	       			["Four Stories", 4]
+	       		]
 	       }
 	    ]
 	}

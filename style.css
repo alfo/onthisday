@@ -67,15 +67,18 @@ h2 {
 	border: 4px dashed black;
 	padding: 10px;
 	margin-top: 15px;
+	margin-bottom: 10px;
 }
 
 .announcement h3 {
 	text-align: center;
 	margin: 6px 0;
+	font-size: 19px;
 }
 
 .announcement p {
 	line-height: 1.2;
+	font-size: 19px;
 }
 
 footer {

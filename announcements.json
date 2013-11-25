@@ -3,5 +3,10 @@
 		"date": "2013-11-16",
 		"title": "New Options",
 		"body": "You can now select in your subscription preferences whether you want to receive recent events, or events further in the past. Also: fix for the date bug by Phil Gyford, and three events instead of two."
+	},
+	{
+		"date": "2013-11-25",
+		"title": "Number of Stories Option",
+		"body": "I've added an option which allows you to choose the number of stories you'd like to receive, as some would prefer fewer and some would prefer more. Go to click 'Edit Subscription' on the BERGCloud Remote."
 	}
 ]

@@ -47,7 +47,7 @@
 		// Get today's date
 		$date = date('d-m-Y');
 		// md5 it
-		header("ETag: ".md5($date));
+		header("ETag: " . md5($date));
 	}
 
 	function charset() {
@@ -66,128 +66,80 @@
 	}
 
 	// The main function. This obtains the information on this day
-	function onThisDay($source, $newOrOld) {
+	function onThisDay($newOrOld, $number) {
 
-		if ($source == 'wikipedia') {
+		$contents = trim(grab('http://en.wikipedia.org/w/api.php?action=featuredfeed&feed=onthisday&feedformat=rss'));
+		
+		$array = xmlToArray($contents);
+		
+		// Count the number of days
+		$noOfDays = count($array['channel']['item']);
+		// Get the Key of today
+		$today = $noOfDays - 1;
+		// Get the description of today's entry
+		$input = $array['channel']['item'][$today]['description'];
+		
+		// The contents of 'description' now contains a HTML unordered list
 
-			$contents = trim(grab('http://en.wikipedia.org/w/api.php?action=featuredfeed&feed=onthisday&feedformat=rss'));
+		// Initialize phpQuery to deal with the parsing
+		$doc = phpQuery::newDocumentHTML($input);
+
+		// Produce an array of the contents of the list items
+		$items = $doc->find('li')->text();
+
+		// Trim the whitespace around the items
+		$items = trim(removeEmptyLines($items));
+		
+		// Now $items is a string with each item on a new line
+		
+		// Split $items into an $output array based on new lines
+		foreach(preg_split("/(\r?\n)/", $items) as $line){
+			$output[] = trim($line);
+		}
+
+		// Now we have a nice array with maybe three or four items in it that look like this:
+		// "1843 – Something awesome happened"
+
+		// We're now going to separate it into a multidimensional array that looks like this:
+		/*
+
+		Item 1
+			- Year
+			- Info
+		Item 2
+			- Year
+			- Info
+
+		*/
+
+		$return = array(); // Prepare an array for outputting
+
+		foreach ($output as $item) {
+			$bits = explode(" – ", $item); // Separate the string into year and info
+			$year = trim($bits[0]); // Set $year as the first part 
+			unset($bits[0]); // Stop the year turning up twice
+			$info = implode(" – ", $bits); // Set $info as the rest of the parts
+			$add = array(); // Prepare an array for adding
+			$add['year'] = $year; // Add the year
 			
-			$array = xmlToArray($contents);
+			// Remove (pictured) from the text, as no pictures are printed
+			$pictured = " (pictured)";
+			$info = str_replace($pictured, "", $info);
 			
-			// Count the number of days
-			$noOfDays = count($array['channel']['item']);
-			// Get the Key of today
-			$today = $noOfDays - 1;
-			// Get the description of today's entry
-			$input = $array['channel']['item'][$today]['description'];
-			
-			// The contents of 'description' now contains a HTML unordered list
-
-			// Initialize phpQuery to deal with the parsing
-			$doc = phpQuery::newDocumentHTML($input);
-
-			// Produce an array of the contents of the list items
-			$items = $doc->find('li')->text();
-
-			// Trim the whitespace around the items
-			$items = trim(removeEmptyLines($items));
-			
-			// Now $items is a string with each item on a new line
-			
-			// Split $items into an $output array based on new lines
-			foreach(preg_split("/(\r?\n)/", $items) as $line){
-				$output[] = trim($line);
-			}
-
-			// Now we have a nice array with maybe three or four items in it that look like this:
-			// "1843 – Something awesome happened"
-
-			// We're now going to separate it into a multidimensional array that looks like this:
-			/*
-
-			Item 1
-				- Year
-				- Info
-			Item 2
-				- Year
-				- Info
-
-			*/
-
-			$return = array(); // Prepare an array for outputting
-
-			foreach ($output as $item) {
-				$bits = explode(" – ", $item); // Separate the string into year and info
-				$year = trim($bits[0]); // Set $year as the first part 
-				unset($bits[0]); // Stop the year turning up twice
-				$info = implode(" – ", $bits); // Set $info as the rest of the parts
-				$add = array(); // Prepare an array for adding
-				$add['year'] = $year; // Add the year
-				$add['info'] = $info; // Add the info
-				$return[] = $add; // Add the $add to the $return array
-			}
-
-		} else { // Using the BBC as source instead
-
-			$doc = phpQuery::newDocumentHTML(grab('http://news.bbc.co.uk/onthisday/default.stm'));
-
-			$items = $doc->find('div.bodytext')->text();
-
-			// Trim the whitespace around the items
-			$items = trim(removeEmptyLines($items));
-
-			// Split $items into an $output array based on new lines
-			foreach(preg_split("/(\r?\n)/", $items) as $line){
-				$output[] = substr($line, 1);
-			}
-
-			// Cycle through the array of raw data and extract only the articles
-			$i = 0;
-
-			while ($i <= 8) {
-				$articles[] = $output[$i];
-				$i++;
-			}
-
-			// This isn't nice, but it works
-			$extracted[0]['title'] = $articles[0];
-			$extracted[0]['description'] = $articles[1];
-			$extracted[1]['title'] = $articles[2];
-			$extracted[1]['description'] = $articles[3];
-			$extracted[2]['title'] = $articles[4];
-			$extracted[2]['description'] = $articles[5];
-			$extracted[2]['title'] = $articles[6];
-			$extracted[2]['description'] = $articles[7];
-
-			// Initialize the $return array
-			$return = array();
-
-			// Now to format the info
-
-			foreach ($extracted as $item) {
-				$year_bits = explode(': ', $item['title']);
-				$year = $year_bits[0];
-				// A quick way to fix a missing 1 on the front of years.
-				// As the BBC do not report on non-currnet affairs, it is safe to say that this will not cause any mishaps
-				if ($year < 1000) $year = "1".$year;
-				$info = $item['description'];
-				$add = array();
-				$add['year'] = $year;
-				$add['info'] = $info;
-				$return[] = $add;
-			}
-
+			$add['info'] = $info; // Add the info
+			$return[] = $add; // Add the $add to the $return array
 		}
 
 		if ($newOrOld == 'old') {
-			$usort = 0;
+			$start = 0;
 		} else {
-			$usort = -3;
+			$start = -$number;
 		}
 
+		// Sort all the stories by year
 		usort($return, "sortByYear");
 
-		$return = array_slice($return, $usort, 3, true);
+		$return = array_slice($return, $start, $number, true);
 
 		// Return!
 		return $return;
