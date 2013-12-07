@@ -56,3 +56,6 @@ The BBC front page is
 And the BBC RSS (stuck on the 25th October) is
 
 	http://news.bbc.co.uk/rss/on_this_day/front_page/rss.xml
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/alfo/onthisday/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
