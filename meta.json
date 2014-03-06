@@ -26,10 +26,10 @@
 	       	"label": "How many stories would you like to receive?",
 	       	"options":
 	       		[
-	       			["One Story", 1],
-	       			["Two Stories", 2],
-	       			["Three Stories", 3],
-	       			["Four Stories", 4]
+	       			["One Story", "1"],
+	       			["Two Stories", "2"],
+	       			["Three Stories", "3"],
+	       			["Four Stories", "4"]
 	       		]
 	       }
 	    ]
