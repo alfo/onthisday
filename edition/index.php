@@ -5,7 +5,10 @@
 	ETag(); // Output the ETag
 	charset(); // Output the charset header, as here: http://remote.bergcloud.com/developers/reference/edition#charsets
 
-	$items = onThisDay($_GET['time_preference'], $_GET['number']); // Grab the items
+	$default = 3;
+	$number = isset($_GET['number'])?$_GET['number']:$default;
+
+	$items = onThisDay($_GET['time_preference'], $number); // Grab the items
 
 	// -- Output HTML -- //
 

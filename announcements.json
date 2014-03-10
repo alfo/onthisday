@@ -8,5 +8,10 @@
 		"date": "2013-11-25",
 		"title": "Number of Stories Option",
 		"body": "I've added an option which allows you to choose the number of stories you'd like to receive, as some would prefer fewer and some would prefer more. Go to click 'Edit Subscription' on the BERGCloud Remote."
+	},
+	{
+		"date": "2014-03-07",
+		"title": "Fixed Number of Stories",
+		"body": "Apologies, but it appears that - due to an oddity with the way publication configuration works - OTD had been ignoring how many stories you chose. That should be fixed now."
 	}
 ]
