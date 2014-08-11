@@ -13,5 +13,10 @@
 		"date": "2014-03-07",
 		"title": "Fixed Number of Stories",
 		"body": "Apologies, but it appears that - due to an oddity with the way publication configuration works - OTD had been ignoring how many stories you chose. That should be fixed now."
+	},
+	{
+		"date": "2014-07-18",
+		"title": "Back after downtime",
+		"body": "Apologies for the downtime, my server went offline while I was away and I've put in precautions to stop it happenning again."
 	}
 ]
