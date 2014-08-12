@@ -1,0 +1,12 @@
+{
+    "require": {
+        "php": ">=5.4.0",
+        "vlucas/bulletphp": "~1.3.x"
+    },
+    "extra": {
+        "heroku": {
+            "document-root": "",
+            "index-document": "index.php"
+        }
+    }
+}
