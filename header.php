@@ -2,8 +2,8 @@
 <html>
 	<head>
 		<title>On This Day</title>
-		<link rel="stylesheet" type="text/css" href="http://little.alexforey.com/onthisday/reset.css">
-		<link rel="stylesheet" type="text/css" href="http://little.alexforey.com/onthisday/style.css">
+		<link rel="stylesheet" type="text/css" href="http://onthisday.app.alfo.im/reset.css">
+		<link rel="stylesheet" type="text/css" href="http://onthisday.app.alfo.im/style.css">
 	</head>
 
 	<body>
